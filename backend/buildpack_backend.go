@@ -11,7 +11,6 @@ import (
 
 	"github.com/cloudfoundry-incubator/bbs/models"
 	"github.com/cloudfoundry-incubator/buildpack_app_lifecycle"
-	"github.com/cloudfoundry-incubator/cc-uploader"
 	"github.com/cloudfoundry-incubator/runtime-schema/cc_messages"
 	"github.com/cloudfoundry/gunk/urljoiner"
 	"github.com/pivotal-golang/lager"
@@ -211,6 +210,7 @@ func (backend *traditionalBackend) BuildRecipe(stagingGuid string, request cc_me
 		EnvironmentVariables:          []*models.EnvironmentVariable{{"LANG", DefaultLANG}},
 		LegacyDownloadUser:            "vcap",
 		TrustedSystemCertificatesPath: TrustedSystemCertificatesPath,
+		Label: request.Label,
 	}
 
 	logger.Debug("staging-task-request")
